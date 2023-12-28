@@ -1,9 +1,10 @@
 module.exports = async (client) => {
     //icon&name set
-    const iconurl = await client.user.displayAvatarURL()
-    const name = await client.user.username
-    global.boticon = iconurl;
-    global.botname = name;
+    const dev = await client.users.fetch(client.developper)
+    global.boticon = await client.user.displayAvatarURL()
+    global.botname = await client.user.username
+    global.devname = dev.username
+    global.devicon = await dev.avatarURL()
 
     const size = client.guilds.cache.size
     client.user.setActivity({

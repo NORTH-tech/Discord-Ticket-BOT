@@ -5,12 +5,13 @@ require("dotenv").config();
 const client = new Client({
     intents: Object.values(GatewayIntentBits).filter(Number.isInteger)
 });
+client.developper = process.env.developper;
 
 //client-event-loading
 const events = readdirSync(`./events`).filter(files => files.endsWith('.js'));
 for (const file of events) {
     const event = require(`./events/${file}`);
-    client.once(Events[file.split('.')[0]], event.bind(null, client))
+    client.on(Events[file.split('.')[0]], event.bind(null, client))
 };
 
 //set-slashCommands
