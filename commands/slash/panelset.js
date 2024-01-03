@@ -12,6 +12,8 @@ module.exports = {
         ),
 
     async function(interaction, client) {
+        const CategoryID = interaction.channel.parentId;
+        if (!CategoryID) return await interaction.reply({ content: "カテゴリ内のチャンネルで実行してください。", ephemeral: true });
         const modal = new ModalBuilder()
             .setCustomId('panelset')
             .setTitle('チケットパネルセット');
